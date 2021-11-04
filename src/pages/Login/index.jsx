@@ -17,7 +17,7 @@ class Login extends Component{
 
     logar(){
         console.log("Logando")
-        /*Fazer aqui os comandos para logar */
+        
         firebase.ref("usuario").on("value", (snapshot) => {
           let usuario = [];
           snapshot.forEach(function(item){
@@ -27,7 +27,7 @@ class Login extends Component{
           });
           console.log("Usuario encontrado no banco:" + usuario);
           let state = this.state;
-          if (state.email == usuario.email and state.senha == usuario.senha) {
+          if (state.email == usuario.email && state.senha == usuario.senha) {
             //logou
             console.log("Usuario Logado")
           }else {

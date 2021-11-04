@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Cadastro from './pages/Cadastro'
+import Principal from './pages/Principal'
 
 ReactDOM.render(
-    <Cadastro />,
+    <Principal />,
     document.getElementById('root')
 )
