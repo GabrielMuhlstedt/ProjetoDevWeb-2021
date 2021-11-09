@@ -6,13 +6,9 @@ import Postagens from '../Postagens'
 
 class Principal extends Component {
 
-    state = {
-        info: ""
-    }
+    
 
     render(){
-
-        const { info } = this.state
 
         return(
             <React.Fragment>

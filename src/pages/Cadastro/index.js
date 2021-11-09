@@ -40,9 +40,6 @@ class Cadastro extends Component{
         //para fazer >>>>
         //verificar se o usuario ja existe atraves do email
 
-        //aqui eu ja pego o nome, a senha e o email q vem do state e
-        //mando pras variaveis do banco, então acho q chamar um metodo aqui pra verificar tudo acho q é certo,
-        //ai se o metodo for true, vc coloca tudo isso aqui q eu escrevi dentro.
         var senhaMD5 = md5(this.state.senha);
         firebase.ref("usuario").push({nome: this.state.nome, email:this.state.email, senha: senhaMD5})
         .then( ()=> {

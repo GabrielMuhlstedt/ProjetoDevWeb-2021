@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useDebugValue } from 'react'
 import Post from '../../components/Post'
 import Comentario from '../../components/Comentario'
 import firebase from "../../components/Firebase/firebase.js";
@@ -13,15 +13,19 @@ class Postagens extends Component{
         super(props);
 
         this.state = {
-            //*Gabriel*
-            //temos q dar um jeito de guardar o id atual da pessoa!.
-            idAtual: 1,
-            usuario: [],
-            posts: []
+            post: [],
+            puxado: false
         }
 
         this.puxarPosts = this.puxarPosts.bind(this);
+        this.setPuxado = this.setPuxado.bind(this);
+        this.verificarPostagens = this.verificarPostagens.bind(this);
+        this.verificarConteudo = this.verificarConteudo.bind(this)
       } 
+
+    setPuxado(p){
+        this.setState( { puxado: p } )
+    }
 
     puxarPosts(){
         //todos os posts
@@ -33,39 +37,82 @@ class Postagens extends Component{
             snapshot.forEach(function(item){
                 var key = item.key;
                 var valor = item.val();
-                usuario.push({ id: key});
+                usuario.push({ id: key, nome: valor.nome, postagens: [valor.postagens]});
             });
             let state = this.state;
-            state.usuario = usuario;
-            this.setState(state);
-
-            var count = 0;  
-            while (count < usuario.length){
-                console.log(usuario[count]);
-                if (usuario[count] == state.idAtual){
-                    firebase.ref("postagens").on(usuario.id, (snapshot) => {
-                        let comentarios = [];
-                        snapshot.forEach(function(item){
-                            var key = item.key;
-                            var valor = item.val();
-                            this.state.posts.push({ idPost: key, conteudo: valor.conteudo, likes: valor.likes});
-                        });
-                      });
-                }
-                count ++;
-            }
-            console.log(this.state.posts);
+            state.post = usuario;
+            this.setState(state);            
+            
           });
+    }
+
+    mostrar(){
+        console.log("function")
+        console.log(this.state.post)
+    }
+
+    verificarPostagens(p ){
+        if(p[0] == undefined){
+            return false
+        }
+        return true
+    }
+
+    verificarConteudo(p){
+        if(p == undefined){
+            console.log("false")
+            return false
+        }
+        console.log("true")
+        return true
     }
 
     render(){
 
+        const { posts, puxado } = this.state
+
+        if(!puxado){
+            this.puxarPosts()
+            this.setPuxado(true)
+            
+        }
         return(
-            <React.Fragment>
-                <button onClick={this.puxarPosts} >Posts</button>
-                <Post postador={this.usuario} >
-                    <Comentario />
-                </Post>
+
+            <React.Fragment >
+                {
+                    this.state.post.map((u, index) => {
+                        return(
+                            <div key={index}>
+                                {this.verificarPostagens(u.postagens) ? (
+                                    <React.Fragment>
+                                        {u.postagens.map((p, i) => {
+                                            return(
+                                                <div key={i}>
+                                                    
+                                                    {
+                                                        p.map((post, ind) => {
+                                                            return(
+                                                                <div key={ind}>
+                                                                    <hr/>
+                                                                    <h3>{u.nome}</h3>
+                                                                    <hr/>
+                                                                    <h1>{post.conteudo}</h1>
+                                                                    <p>Like: {post.likes}</p>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                    
+                                                </div>
+                                            )
+                                        })}
+                                    </React.Fragment>
+                                ): null}
+                            </div>
+                        )
+                    })
+                }
+                
             </React.Fragment>
         )
     }

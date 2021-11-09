@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 class Login extends Component{
 
     state = {
+        idAtual: "",
         email: "",
         senha: ""
     }
@@ -25,6 +26,7 @@ class Login extends Component{
               var valor = item.val();
               usuario.push({ id: key, email: valor.email, senha: valor.senha});
           });
+          //fazer o while, testar de um por um e salvar o id.
           console.log("Usuario encontrado no banco:" + usuario);
           let state = this.state;
           if (state.email == usuario.email && state.senha == usuario.senha) {
