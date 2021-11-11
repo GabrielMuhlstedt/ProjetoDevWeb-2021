@@ -43,10 +43,6 @@ class Login extends Component {
 
     }
 
-    cadastro(){
-        this.props.history.push("/Cadastro");
-    }
-
     async sair() {
         await firebase.auth().signOut();
     }
@@ -76,7 +72,7 @@ class Login extends Component {
                 <input type="password" className="input" placeholder="Senha" onChange={(e) => this.setState({senha: e.target.value})} />
                 <br />
                 <button className="btn-logar" onClick={this.logar} >Logar</button>
-                <button className="btn-sair" onClick={this.cadastro} >Cadastrar</button>
+                <Link to="/Cadastro"><button className="btn-sair">Cadastrar</button></Link>
                 </div>
                 </div>
                 

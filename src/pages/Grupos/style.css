@@ -1,32 +1,33 @@
 
-.fundoCadastro{
-    background-image: url(../../assets/FundoDeserto.png);
+.fundoGrupos{
+    background-image: url(../../assets/FundoNeve.png);
     overflow: hidden;
     width: 100vw;
     height: 60vw;
     Background-repeat: no-repeat;
     Background-position:center;
     Background-size:cover;
+    
+    
 }
 
-
-.trecosCadastro{
+.trecosFundo{
     
-    color: rgb(65, 35, 2);
+    color: white;
     font-size: 28px;
     margin-top: 15%;
     text-align: center;
     
 }
-.btn-cadastrar{
-    
-    width: 150px;
-    height: 36px;
-    background-color: #e67a21;
+
+.btn-grupos-voltar{
+    width: 170px;
+    height: 55px;
+    background-color: #770707;
     color: #FFF;
-    font-size: 20px;
+    font-size: 40px;
     border: none;
     border-radius: 5px;
+    margin-top: 10vw;
     margin-right: 10px;
-
 }

@@ -114,7 +114,7 @@ class Perfil extends Component {
                             <img className="imgPerfil" src={fotoPerfil} />
                         </td>
                         <td>
-                            <h3 className="poster-potagens">Gabriel Muhlstedt Bochnia</h3>
+                            <h3 className="poster-potagens">Gabriel Muhlstedt</h3>
                         </td>
                     </tr>
 
@@ -133,7 +133,7 @@ class Perfil extends Component {
                             E-mail:
                         </th>
                         <td className="poster-potagens">
-                            queromematar@gmail.com
+                            gabriel@gmail.com
                         </td>
                     </tr>
 

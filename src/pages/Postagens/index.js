@@ -32,9 +32,6 @@ class Postagens extends Component{
     }
 
     puxarPosts(){
-        //todos os posts
-        //array [{usuario, conteudo, comentarios, avaliação}, {}, {}]
-        //colocar o array no STATE
 
         firebase.database().ref("usuario").on("value", (snapshot) => {
             let usuario = [];
@@ -51,13 +48,11 @@ class Postagens extends Component{
     }
 
     mostrar(){
-        console.log("function")
         console.log(this.state.post)
     }
 
     verificarPostagens(p ){
         if(p[0] == undefined){
-            console.log("Filtrou uma postagem")
             return false
         }
         return true
@@ -65,10 +60,8 @@ class Postagens extends Component{
 
     verificarConteudo(p){
         if(p == undefined){
-            console.log("false")
             return false
         }
-        console.log("true")
         return true
     }
 
@@ -88,20 +81,14 @@ class Postagens extends Component{
         return(
             
             <React.Fragment >
-                {console.log("Isso são os posts")}
-                {console.log(this.state.post)}
                 {
                     this.state.post.map((u, index) => {
                         return(
                             <div key={index}>
-                                {console.log("Isso é U")}
-                                {console.log(u)}
                                 {u.postagens.map((p, i) => {
                                             return(
                                             
-                                                <div key={i}>
-                                                    {console.log("isso é P")}
-                                                    {console.log(p)}        
+                                                <div key={i}>      
                                                     {
                                                         Object.values(p).map((post, ind) => {
 

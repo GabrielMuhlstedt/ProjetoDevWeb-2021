@@ -22,6 +22,7 @@ class Menu extends Component {
             <React.Fragment className={"menuArea"}>
                 <nav className={"menu"}>
                     <Link to="/Perfil"><button className="btn-postar">Meu Perfil</button></Link>
+                    <Link to="/Grupos"><button className="btn-postar">Grupos</button></Link>
                     <Link to="/Postar"><button className="btn-postar">Postar</button></Link>
                     <button className="btn-sair" onClick={this.sair} >Sair</button>
                 </nav>
@@ -31,4 +32,4 @@ class Menu extends Component {
 
 }
 
-export default Menu
+export default Menu;

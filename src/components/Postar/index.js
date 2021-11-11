@@ -7,7 +7,8 @@ class Postar extends Component{
         super(props);
 
         this.state = {
-            conteudo : ""
+            conteudo : "",
+            usuario: []
         }  
 
         
@@ -21,28 +22,39 @@ class Postar extends Component{
     }
 
     criarPost(){
-        /*Fazer aqui o cadastro do post */
-        //id = 1 colocado hardcoded
+        let userId = '';
+        let userEmail = '';
 
-        let id = 1;
+        firebase.database().ref("usuario").on("value", (snapshot) => {
+            let usuario = [];
+            snapshot.forEach(function(item){
+                var key = item.key;
+                var valor = item.val();
+                usuario.push({ id: key, email: valor.email});
+            });
+            let state = this.state;
+            state.post = usuario;
+            this.setState(state);            
+            
+        });
+
+        console.log(this.state);
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                userId = user.uid;
+                userEmail = user.email;
+            }
+        });
 
 
-        firebase.ref('usuario/' + id + '/postagens').push({conteudo: this.state.conteudo})
+
+        /*
+        firebase.ref('usuario/' + userId + '/postagens').push({conteudo: this.state.conteudo})
         .then( ()=> {
             console.log("Postagem Concluida");
         })
         .catch((erro)=>{
             console.log("mensagem:" + erro);
-        })
-
-        /*
-        console.log(this.state.conteudo);
-        firebase.ref("/usuario/\ "+ id + "/\postagens/").push({conteudo:this.state.conteudo})
-        .then( ()=> {
-          console.log("Postagem Concluida");
-        })
-        .catch((erro)=>{
-          console.log("mensagem:" + erro);
         })
         */
     }

@@ -1,10 +1,7 @@
 import { fireEvent } from '@testing-library/dom';
 import React, { Component, useEffect } from 'react'
 import firebase from "../../components/Firebase/firebase.js";
-//import Button from "../../components/Button"
-import Principal from '../Principal';
-import Login from '../Login';
-
+import './style.css';
 
 
 class Cadastro extends Component {
@@ -76,18 +73,19 @@ class Cadastro extends Component {
     render() {
         const { nome, email, senha, confirmarSenha } = this.state
         return (
-            <div>
+            <div className="fundoCadastro">
+            <div className="trecosCadastro">
                 <h1>Cadastro</h1>
-                <hr />
-                <input type="text" placeholder="Nome de usuário" value={nome} onChange={e => this.setNome(e)} />
+                <input type="text" className="input" placeholder="Nome de usuário" value={nome} onChange={e => this.setNome(e)} />
                 <br />
-                <input type="email" placeholder="email" value={email} onChange={e => this.setEmail(e)} />
+                <input type="email" className="input" placeholder="email" value={email} onChange={e => this.setEmail(e)} />
                 <br />
-                <input type="password" placeholder="senha" value={senha} onChange={e => this.setSenha(e)} />
+                <input type="password" className="input" placeholder="senha" value={senha} onChange={e => this.setSenha(e)} />
                 <br />
-                <input type="password" placeholder="confirmar senha" value={confirmarSenha} onChange={e => this.setCongirrmarSenha(e)} />
+                <input type="password" className="input" placeholder="confirmar senha" value={confirmarSenha} onChange={e => this.setCongirrmarSenha(e)} />
                 <br />
-                <button onClick={this.cadastrar} >Cadastrar</button>
+                <button className="btn-cadastrar" onClick={this.cadastrar} >Cadastrar</button>
+            </div>
             </div>
         )
     }

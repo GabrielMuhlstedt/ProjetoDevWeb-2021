@@ -14,11 +14,12 @@ class Principal extends Component {
     }
 
     componentDidMount(){
+        console.log("Teste");
         firebase.auth().onAuthStateChanged((user)=>{
             if(!user){
                 //JOGAR PARA FORA DO PRINCIPAL SÓ COM UM /
                 console.log("Nao logado")
-
+                this.props.history.push("/");
             }
             else{
             }
