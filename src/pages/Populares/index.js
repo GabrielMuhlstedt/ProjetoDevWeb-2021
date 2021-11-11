@@ -16,3 +16,4 @@ class Populares extends Component {
         )
     }
 }
+export default Populares;

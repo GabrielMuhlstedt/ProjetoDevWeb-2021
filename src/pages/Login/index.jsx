@@ -1,54 +1,80 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
+import firebase from "../../components/Firebase/firebase.js";
+// import Principal from '../Principal/index.js';
+import './style.css';
+import Fundo from "../../assets/FundoFloresta.png";
 
-class Login extends Component{
+class Login extends Component {
 
-    state = {
-        idAtual: "",
-        email: "",
-        senha: ""
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            mensagem: "",
+            idAtual: "",
+            email: "",
+            senha: ""
+        }
+
+        this.logar = this.logar.bind(this);
     }
 
-    setEmail(e){
-        this.setState( { email: e.target.value })
+    
+
+    setEmail(e) {
+        this.setState({ email: e.target.value });
     }
 
-    setSenha(e){
-        this.setState( { senha: e.target.value })
+    setSenha(e) {
+        this.setState({ senha: e.target.value });
     }
 
-    logar(){
-        console.log("Logando")
-        
-        firebase.ref("usuario").on("value", (snapshot) => {
-          let usuario = [];
-          snapshot.forEach(function(item){
-              var key = item.key;
-              var valor = item.val();
-              usuario.push({ id: key, email: valor.email, senha: valor.senha});
-          });
-          //fazer o while, testar de um por um e salvar o id.
-          console.log("Usuario encontrado no banco:" + usuario);
-          let state = this.state;
-          if (state.email == usuario.email && state.senha == usuario.senha) {
-            //logou
-            console.log("Usuario Logado")
-          }else {
-            console.log("Usuario não reconhecido")
-          }
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log("Logado");
+                this.state.mensagem = "Logado";
+                //IR PARA O PRINCIPAL===========================
+            }
+            else {
+
+            }
         });
+
     }
 
-    render(){
-        const { email, senha } = this.state
-        return(
+
+    async sair() {
+        await firebase.auth().signOut();
+    }
+
+    logar() {
+        firebase.auth().signInWithEmailAndPassword("queromematar@gmail.com", "gabriel123")
+        .then((auth)=> {
+            console.log("Logou!!!!");
+            //IR PARA O PRINCIPAL===========================
+        })
+        .catch((error)=>{
+          console.log("Erro:" + error);
+        })
+        
+        
+    }
+    // embaixo do login, printar mensagem
+    render() {
+        return (
             <React.Fragment>
-                <h1>Login</h1>
+                {/* <img src={Fundo} /> */}
+
+                <h1 className="tudo">Login</h1>
+                
                 <hr />
-                <input type="email" placeholder="email" value={email} onChange={e => this.setEmail(e)} />
+                <input type="email" className="input" placeholder="E-mail" onChange={(e) => this.setState({email: e.target.value})} />
                 <br />
-                <input type="password" placeholder="senha" value={senha} onChange={e => this.setSenha(e)} />
+                <input type="password" className="input" placeholder="Senha" onChange={(e) => this.setState({senha: e.target.value})} />
                 <br />
-                <button onClick={this.logar} >Logar</button>
+                <button className="btn-logar" onClick={this.logar} >Logar</button>
+                <button className="btn-sair" onClick={this.sair} >Sair</button>
             </React.Fragment>
         )
 

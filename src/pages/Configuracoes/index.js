@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './style.css'
+import Menu from '../../components/Menu';
 
-class Confirguracoes extends Component{
+class Configuracoes extends Component{
 
     //nem mexer nessa página. Vamos deixar por último.
 
@@ -30,4 +30,4 @@ class Confirguracoes extends Component{
     }
 }
 
-export default Configuracoes
+export default Configuracoes;

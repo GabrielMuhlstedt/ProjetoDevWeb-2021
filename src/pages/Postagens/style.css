@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.post{
+    width: 600px;
+    margin-bottom: 20px;
+}
+
+.content{
+    border: solid 2px #000;
+    width: 100%;
+}
+
+.poster{
+    border: solid 2px #000;
+
+}
+
+.likeArea {
+    display: flex;
+}
+
+.likes{
+    border: solid 2px #000;
+    width: 50%;
+}
+
+.darLike{
+    width: 50%;
+}

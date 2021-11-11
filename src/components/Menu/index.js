@@ -11,15 +11,13 @@ class Menu extends Component {
         const opcao = this.state
 
         return(
-            <React.Fragment>
-                <nav>
+            <React.Fragment className={"menuArea"}>
+                <nav className={"menu"}>
                     <li>Principal</li>
                     <li>Meu Perfil</li>
                     <li>Meus Posts</li>
                     <li>Populares</li>
                     <li>Configurações</li>
-                    <li>##########</li>
-                    <li>##########</li>
                 </nav>
             </React.Fragment>
         )

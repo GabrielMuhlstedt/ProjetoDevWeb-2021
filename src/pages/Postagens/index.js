@@ -1,7 +1,10 @@
+
 import React, { Component, useDebugValue } from 'react'
 import Post from '../../components/Post'
 import Comentario from '../../components/Comentario'
 import firebase from "../../components/Firebase/firebase.js";
+
+import './style.css'
 
 class Postagens extends Component{
 
@@ -53,6 +56,7 @@ class Postagens extends Component{
 
     verificarPostagens(p ){
         if(p[0] == undefined){
+            console.log("Filtrou uma postagem")
             return false
         }
         return true
@@ -67,6 +71,10 @@ class Postagens extends Component{
         return true
     }
 
+    darLike(){
+
+    }
+
     render(){
 
         const { posts, puxado } = this.state
@@ -77,27 +85,35 @@ class Postagens extends Component{
             
         }
         return(
-
+            
             <React.Fragment >
+                {console.log("Isso são os posts")}
+                {console.log(this.state.post)}
                 {
                     this.state.post.map((u, index) => {
                         return(
                             <div key={index}>
-                                {this.verificarPostagens(u.postagens) ? (
-                                    <React.Fragment>
-                                        {u.postagens.map((p, i) => {
+                                {console.log("Isso é U")}
+                                {console.log(u)}
+                                {u.postagens.map((p, i) => {
                                             return(
+                                            
                                                 <div key={i}>
-                                                    
+                                                    {console.log("isso é P")}
+                                                    {console.log(p)}        
                                                     {
-                                                        p.map((post, ind) => {
+                                                        Object.values(p).map((post, ind) => {
+
                                                             return(
-                                                                <div key={ind}>
+                                                                <div key={ind} className="post">
                                                                     <hr/>
-                                                                    <h3>{u.nome}</h3>
-                                                                    <hr/>
-                                                                    <h1>{post.conteudo}</h1>
-                                                                    <p>Like: {post.likes}</p>
+                                                                    <h3 className={"poster"}>{u.nome}</h3>
+                                                                       
+                                                                    <h1 className={"content"}>{post.conteudo}</h1>
+                                                                    <div className={"likeArea"}>
+                                                                        <p className={"likes"}>Like: {post.likes}</p>
+                                                                        <button onCLick={this.darLike()} className={"darLike"} >Like</button>
+                                                                    </div>
                                                                 </div>
                                                             )
                                                         })
@@ -106,8 +122,6 @@ class Postagens extends Component{
                                                 </div>
                                             )
                                         })}
-                                    </React.Fragment>
-                                ): null}
                             </div>
                         )
                     })

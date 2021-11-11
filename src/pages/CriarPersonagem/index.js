@@ -31,6 +31,8 @@ class CriarPersonagem extends Component{
     }
 
     render(){
+
+        const { nome, idade, classe, raca  } = this.state
         return(
             <div>
                 <h1>Criar Personagem</h1>

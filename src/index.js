@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Principal from './pages/Principal'
-import Postagens from './pages/Postagens'
-import Postar from './components/Postar'
+import Login from './pages/Login'
+
 
 ReactDOM.render(
-    <Postar />,
+    <Login />,
     document.getElementById('root')
 )

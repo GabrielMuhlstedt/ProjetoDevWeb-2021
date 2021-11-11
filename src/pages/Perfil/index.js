@@ -9,12 +9,24 @@ class Perfil extends Component{
         super(props);
 
         this.state = {
-            usuario = []
+            nome: "",
+            email: "",
+            senha: "",
+            puxado: false
         }
 
         this.puxarDados = this.puxarDados.bind(this);
+        this.setPuxado = this.setPuxado.bind(this)
         
 
+    }
+
+    componentDidMount(){
+        if(!this.puxado){
+            this.puxarDados()
+            this.setPuxado(true)
+            
+        }
     }
 
     puxarDados(){
@@ -30,8 +42,15 @@ class Perfil extends Component{
                 var valor = item.val();
                 usuario.push({ idUsuario: key, nome: valor.nome, email: valor.email, senha: valor.senha});
             });
+            
+            console.log("AQUI")
+            console.log(usuario)
+            console.log("Testes")
+            console.log(usuario.nome)
             let state = this.state;
-            state.post = usuario;
+            state.nome = usuario.nome;
+            state.email = usuario.email;
+            state.senha = usuario.senha;
             this.setState(state);            
             
           });
@@ -41,13 +60,20 @@ class Perfil extends Component{
         
     }
 
+    setPuxado(p){
+        this.setState( { puxado: p } )
+    }
+
 
     render(){
+
+        
+
         return(
             <div>
-                <h1> {Nome} </h1>
-                <h5> {Email} </h5>
-                <h5> {senha} </h5>
+                <h1> {this.nome} </h1>
+                <h5> {this.email} </h5>
+                <h5> {this.senha} </h5>
                 <button onClick={this.mudarSenha} >Mudar senha</button>
             </div>
         )

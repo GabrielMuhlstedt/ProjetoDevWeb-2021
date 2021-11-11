@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding-top: 30px;
+}
+
+.menuArea{
+    width: 500px;
+    justify-content: space-between;
+    
+}
+
+.menu{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.menu li{
+    display: inline-block; 
+}
