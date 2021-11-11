@@ -19,7 +19,7 @@ const Rotas = () => {
     <BrowserRouter>
       <Switch>
         <Route exact={true} path="/Principal" component={Principal} />
-        <Route exact={true} path="/Login" component={Login} />
+        <Route exact={true} path="/" component={Login} />
         <Route exact={true} path="/Cadastro" component={Cadastro} />
         <Route exact={true} path="/Perfil" component={Perfil} />
         <Route exact={true} path="/Populares" component={Populares} />

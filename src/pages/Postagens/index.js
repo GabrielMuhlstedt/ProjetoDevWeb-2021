@@ -35,7 +35,7 @@ class Postagens extends Component{
         //array [{usuario, conteudo, comentarios, avaliação}, {}, {}]
         //colocar o array no STATE
 
-        firebase.ref("usuario").on("value", (snapshot) => {
+        firebase.database().ref("usuario").on("value", (snapshot) => {
             let usuario = [];
             snapshot.forEach(function(item){
                 var key = item.key;

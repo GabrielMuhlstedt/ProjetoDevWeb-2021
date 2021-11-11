@@ -35,3 +35,23 @@
     border-radius: 5px;
     margin-top: 10px;
 }
+
+body{
+    background-image: url(../../assets/FundoFloresta.png);
+    overflow: hidden;
+    width: 100vw;
+    height: 50vw;
+    Background-repeat: no-repeat;
+    Background-position:center;
+    Background-size:cover;
+    
+    
+}
+.trecos{
+    
+    color: white;
+    font-size: 28px;
+    margin-top: 15%;
+    text-align: center;
+    
+}
