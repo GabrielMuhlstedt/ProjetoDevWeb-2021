@@ -3,6 +3,7 @@ import React, { Component, useDebugValue } from 'react'
 import Post from '../../components/Post'
 import Comentario from '../../components/Comentario'
 import firebase from "../../components/Firebase/firebase.js";
+import fotoPerfil from '../../assets/fotoPerfil.jpg';
 
 import './style.css'
 
@@ -106,9 +107,20 @@ class Postagens extends Component{
 
                                                             return(
                                                                 <div key={ind} className="post">
-                                                                    <hr/>
-                                                                    <h3 className={"poster"}>{u.nome}</h3>
+                                                                    
+                                                                    {/* Nome usuário */}
+                                                                    <table className="algumaCoisa">
+                                                                        <tr>
+                                                                            <td>
+                                                                            <img className="imgPerfil" src={fotoPerfil}/>
+                                                                            </td>
+                                                                            <td>
+                                                                            <h3 className="poster-potagens">{u.nome}</h3>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
                                                                        
+                                                                    {/* Quadro da postagem */}
                                                                     <h1 className={"content"}>{post.conteudo}</h1>
                                                                     <div className={"likeArea"}>
                                                                         <p className={"likes"}>Like: {post.likes}</p>

@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import './style.css'
+import firebase from "../../components/Firebase/firebase.js";
+
 
 class Menu extends Component {
 
     state = {
         opcao: ""
+    }
+
+    async sair(){
+        console.log("sair")
+        await firebase.auth().signOut();
     }
 
     render(){
@@ -13,11 +21,9 @@ class Menu extends Component {
         return(
             <React.Fragment className={"menuArea"}>
                 <nav className={"menu"}>
-                    <li>Principal</li>
-                    <li>Meu Perfil</li>
-                    <li>Meus Posts</li>
-                    <li>Populares</li>
-                    <li>Configurações</li>
+                    <Link to="/Perfil"><button className="btn-postar">Meu Perfil</button></Link>
+                    <Link to="/Postar"><button className="btn-postar">Postar</button></Link>
+                    <button className="btn-sair" onClick={this.sair} >Sair</button>
                 </nav>
             </React.Fragment>
         )

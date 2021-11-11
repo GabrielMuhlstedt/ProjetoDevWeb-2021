@@ -1,9 +1,9 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component } from 'react'
 import firebase from "../../components/Firebase/firebase.js";
 //import Principal from '../Principal/index.js';
 import './style.css';
 import Fundo from "../../assets/FundoFloresta.png";
-import {Link, useHistory } from 'react-router-dom';
+import {Link, useHistory, withRouter } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -19,8 +19,6 @@ class Login extends Component {
         }
 
         this.logar = this.logar.bind(this);
-        
-        //let history = useHistory(); 
     }
 
     setEmail(e) {
@@ -35,9 +33,7 @@ class Login extends Component {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log("Logado");
-                this.state.mensagem = "Logado";
-                //IR PARA O PRINCIPAL===========================
-                //history.push('/Principal');
+                this.props.history.push("/Principal");
                 
             }
             else {
@@ -47,17 +43,19 @@ class Login extends Component {
 
     }
 
+    cadastro(){
+        this.props.history.push("/Cadastro");
+    }
 
     async sair() {
         await firebase.auth().signOut();
     }
 
     logar() {
-        firebase.auth().signInWithEmailAndPassword("queromematar@gmail.com", "gabriel123")
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha)
         .then((auth)=> {
             console.log("Logou!!!!");
-            //IR PARA O PRINCIPAL===========================
-            //history.push('/Principal');
+            this.props.history.push("/Principal");
         })
         .catch((error)=>{
           console.log("Erro:" + error);
@@ -65,21 +63,21 @@ class Login extends Component {
         
         
     }
-    // embaixo do login, printar mensagem
     render() {
         return (
             
             <React.Fragment>
-                
+                <div className="fundo">
                 <div className="trecos">
-                <h1 className="tudo">Login</h1>
+                <h1>Login</h1>
                 
                 <input type="email" className="input" placeholder="E-mail" onChange={(e) => this.setState({email: e.target.value})} />
                 <br />
                 <input type="password" className="input" placeholder="Senha" onChange={(e) => this.setState({senha: e.target.value})} />
                 <br />
                 <button className="btn-logar" onClick={this.logar} >Logar</button>
-                <button className="btn-sair" onClick={this.sair} >Sair</button>
+                <button className="btn-sair" onClick={this.cadastro} >Cadastrar</button>
+                </div>
                 </div>
                 
             </React.Fragment>

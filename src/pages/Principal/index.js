@@ -1,8 +1,9 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component} from 'react'
 import firebase from "../../components/Firebase/firebase.js";
 import './style.css';
 import Menu from '../../components/Menu';
 import Postagens from '../Postagens';
+import { withRouter } from "react-router-dom";
 
 
 
@@ -17,6 +18,7 @@ class Principal extends Component {
             if(!user){
                 //JOGAR PARA FORA DO PRINCIPAL SÓ COM UM /
                 console.log("Nao logado")
+
             }
             else{
             }
